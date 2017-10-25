@@ -28,29 +28,16 @@ class implementcomm:
            self.list_2 = f2.readlines()
            f2.close()
 	
-	self.column_1 = []
-	self.column_2 = []
-	self.column_3 = []
         self.results_list = []	
 
 	if isunsorted:
 	   for x in self.list_1[:]:
 	      if x in self.list_2:
-	      	 self.column_1.append("\n")
-	       	 self.column_2.append("\n")
-	         self.column_3.append(x)
                  self.results_list.append("\t\t" + x)
 	       	 self.list_2.remove(x)	         
 	      else:
-	         self.column_1.append(x)
-	      	 self.column_2.append("\n")
-      	      	 self.column_3.append("\n")
                  self.results_list.append(x)
-            	       	 
            for y in self.list_2[:]:
-              self.column_1.append("\n")
-              self.column_2.append(y)
-              self.column_3.append("\n")
               self.results_list.append("\t" + y)
              
         else:
@@ -111,7 +98,7 @@ class implementcomm:
            self.results_list[:] = [ x for x in self.results_list if "\t\t" not in x ]
 
         if line1 and line2 and line3:
-           y = 1
+           n = 0
         else:
            for i in self.results_list[:]:
               sys.stdout.write(i)  
@@ -172,7 +159,7 @@ select or reject lines common to two files"""
           parser.error("cannot read both files from stdin, as both files cannot be denoted by -")       
     
     try:
-       compp = implementcomm(file_1, file_2, suppress_line1, suppress_line2, suppress_line3, file_unsorted)
+       comp_var = implementcomm(file_1, file_2, suppress_line1, suppress_line2, suppress_line3, file_unsorted)
     except IOError as err:
        (errno, strerror) = err.args
        parser.error("I/O error({0}): {1}".
