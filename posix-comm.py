@@ -113,16 +113,16 @@ select or reject lines common to two files"""
     # add options -1, -2, -3, and -u
 
     parser.add_option("-1", action="store_true", dest="suppress_line1", default=False,
-    help="Suppress printing of column 1.")
+                      help="Suppress printing of column 1.") # option -1
     
     parser.add_option("-2", action="store_true", dest="suppress_line2", default=False,
-    help="Suppress printing of column 2.")
+                      help="Suppress printing of column 2.") # option -2
 
     parser.add_option("-3", action="store_true", dest="suppress_line3", default=False,
-    help="Suppress printing of column 3.")
+                      help="Suppress printing of column 3.") # option -3
 
     parser.add_option("-u", action="store_true", dest="file_unsorted", default=False,
-    help="Passing unsorted files to the script when -u is set will not cause undefined behavior.")
+                      help="Passing unsorted files to the script when -u is set will not cause undefined behavior.") # option -u
 
     options, args = parser.parse_args(sys.argv[1:])
 
@@ -153,7 +153,7 @@ select or reject lines common to two files"""
     if len(args) != 2:
         parser.error("wrong number of operands")
 
-    file_1 = args[0]
+    file_1 = args[0] # extract arguments
     file_2 = args[1]
     
     if file_1 == "-": # both files cannot be read from stdin
