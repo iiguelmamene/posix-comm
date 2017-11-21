@@ -27,19 +27,19 @@ class implementcomm:
 	   f2 = open(file2, 'r')
            self.list_2 = f2.readlines()
            f2.close()
-	
-        self.results_list = []	
+
+        self.results_list = []	# columns to be outputted
 
 	if isunsorted: # algorithm for unsorted files
 	   for x in self.list_1[:]:
 	      if x in self.list_2:
                  self.results_list.append("\t\t" + x)
-	       	 self.list_2.remove(x)	         
+	       	 self.list_2.remove(x)
 	      else:
                  self.results_list.append(x)
            for y in self.list_2[:]:
               self.results_list.append("\t" + y)
-             
+
         else: # algorithm for sorted files
            while (self.list_1 and self.list_2):
               if self.list_1[0] == self.list_2[0]:
@@ -55,10 +55,10 @@ class implementcomm:
            if self.list_2:
               for i in self.list_2[:]:
                  self.results_list.append("\t" + i)
-           elif self.list_1: 
+           elif self.list_1:
               for i in self.list_1[:]:
                  self.results_list.append(i)
-        
+
         if line1 and line2: # user only wants to print column 3
            self.results_list[:] = [ x for x in self.results_list if "\t\t" in x ]
            x = len(self.results_list) - 1
@@ -79,13 +79,13 @@ class implementcomm:
                  self.results_list[x]  = self.results_list[x].replace("\t", "", 1)
               x = x - 1
         elif line2 and line3: # user only wants to print column 1
-           self.results_list[:] = [ x for x in self.results_list if "\t" not in x ]     
+           self.results_list[:] = [ x for x in self.results_list if "\t" not in x ]
         elif line1: # user only wants to print columns 2 and 3
            self.results_list[:] = [ x for x in self.results_list if "\t" in x ]
            x = len(self.results_list) - 1
            while (x >= 0):
               if "\t" in self.results_list[x]:
-                 self.results_list[x]  = self.results_list[x].replace("\t", "", 1)   
+                 self.results_list[x]  = self.results_list[x].replace("\t", "", 1)
               x = x - 1
         elif line2: # user only wants to print columns 1 and 3
            self.results_list[:] = [ x for x in self.results_list if "\t\t" in x or ("\t" not in x) ]
@@ -101,7 +101,7 @@ class implementcomm:
            n = 0
         else: # print the desired columns
            for i in self.results_list[:]:
-              sys.stdout.write(i)  
+              sys.stdout.write(i)
 def main():
     version_msg = "%prog 2.0"
     usage_msg = """%prog [OPTION]... file1 file2
@@ -114,7 +114,7 @@ select or reject lines common to two files"""
 
     parser.add_option("-1", action="store_true", dest="suppress_line1", default=False,
                       help="Suppress printing of column 1.") # option -1
-    
+
     parser.add_option("-2", action="store_true", dest="suppress_line2", default=False,
                       help="Suppress printing of column 2.") # option -2
 
@@ -155,18 +155,18 @@ select or reject lines common to two files"""
 
     file_1 = args[0] # extract arguments
     file_2 = args[1]
-    
+
     if file_1 == "-": # both files cannot be read from stdin
        if file_2 == "-":
-          parser.error("cannot read both files from stdin, as both files cannot be denoted by -")       
-    
+          parser.error("cannot read both files from stdin, as both files cannot be denoted by -")
+
     try:
        comp_var = implementcomm(file_1, file_2, suppress_line1, suppress_line2, suppress_line3, file_unsorted)
     except IOError as err:
        (errno, strerror) = err.args
        parser.error("I/O error({0}): {1}".
                      format(errno, strerror))
-    
+
 
 if __name__ == "__main__":
     main()
