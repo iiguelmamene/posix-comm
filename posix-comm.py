@@ -165,6 +165,5 @@ select or reject lines common to two files"""
        parser.error("I/O error({0}): {1}".
                      format(errno, strerror))
 
-
 if __name__ == "__main__":
     main()
