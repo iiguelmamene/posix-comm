@@ -3,8 +3,6 @@
 """
 Implements the POSIX comm command.
 
-Isaac Iguelmamene
-
 $Id: comm.py,v 1.0 2017/10/21 23:34:00 iguelmamene Exp $
 """
 
