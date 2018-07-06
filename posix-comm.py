@@ -151,7 +151,8 @@ select or reject lines common to two files"""
     if len(args) != 2:
         parser.error("wrong number of operands")
 
-    file_1 = args[0] # extract arguments
+    # extract arguments
+    file_1 = args[0]
     file_2 = args[1]
 
     if file_1 == "-": # both files cannot be read from stdin
