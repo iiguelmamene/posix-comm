@@ -27,6 +27,7 @@ class implementcomm:
            f2.close()
 
         self.results_list = []	# columns to be outputted
+	
 
 	if isunsorted: # algorithm for unsorted files
 	   for x in self.list_1[:]:
